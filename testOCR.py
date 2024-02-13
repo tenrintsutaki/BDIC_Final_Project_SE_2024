@@ -5,7 +5,7 @@ from paddleocr import PaddleOCR
 ocr = PaddleOCR(lang = 'en')
 
 def start_ocr():
-    img_path = "img.png"
+    img_path = "static/images/img.png"
     result = ocr.ocr(img_path)
     output = ""
     for res in result:
