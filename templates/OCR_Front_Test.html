@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR请求</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <style>
+        #loader {
+            border: 16px solid #f3f3f3; /* 边框颜色 */
+            border-top: 16px solid #3498db; /* 上部分边框颜色 */
+            border-radius: 50%; /* 设置为圆形 */
+            width: 120px; /* 大小 */
+            height: 120px;
+            animation: spin 2s linear infinite; /* 使用动画效果 */
+            margin: auto; /* 居中显示 */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); } /* 初始状态 */
+            100% { transform: rotate(360deg); } /* 结束状态 */
+        }
+    </style>
+</head>
+<body>
+
+<button id="ocrButton">点击进行OCR</button>
+<div id="loader" ></div> <!-- 添加一个元素作为加载动画 -->
+<textarea id="result" rows="10" cols="50" readonly></textarea>
+
+<script>
+    $(document).ready(function () {
+        $("#loader").hide();
+        $("#ocrButton").click(function () {
+            // 显示加载动画
+            $("#loader").show();
+
+            // 发送OCR请求
+            $.ajax({
+                type: "GET",
+                url: "/ocr",  // 请确保正确设置Flask后端的路由
+                success: function (response) {
+                    // 隐藏加载动画
+                    $("#loader").hide();
+
+                    // 将返回值显示在textarea中
+                    $("#result").val(response);
+                },
+                error: function () {
+                    // 隐藏加载动画，并显示错误信息
+                    $("#loader").hide();
+                    alert("发生错误，请重试。");
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

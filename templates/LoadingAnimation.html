@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>加载动画</title>
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3; /* 边框颜色 */
+            border-top: 16px solid #3498db; /* 上部分边框颜色 */
+            border-radius: 50%; /* 设置为圆形 */
+            width: 120px; /* 大小 */
+            height: 120px;
+            animation: spin 2s linear infinite; /* 使用动画效果 */
+            margin: auto; /* 居中显示 */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); } /* 初始状态 */
+            100% { transform: rotate(360deg); } /* 结束状态 */
+        }
+    </style>
+</head>
+<body>
+    <div class="loader"></div> <!-- 添加一个元素作为加载动画 -->
+</body>
+</html>
